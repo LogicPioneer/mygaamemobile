@@ -80,30 +80,4 @@ $(document).ready(function() {
         }
     }, 2000);
 
-    // 6. Popper Overlay Backdrop Handler for mobile bottom-sheets
-    // Whenever a .popper popup is created on mobile, we show a backdrop overlay.
-    // Clicking the backdrop closes the popup naturally.
-    var popperObserver = new MutationObserver(function(mutations) {
-        if (window.innerWidth <= 768) {
-            var activePoppers = $('.popper:visible');
-            if (activePoppers.length > 0) {
-                if ($('.popper-backdrop').length === 0) {
-                    $('body').append('<div class="popper-backdrop"></div>');
-                    // Clicking the backdrop triggers a click elsewhere to close Popper
-                    $('.popper-backdrop').on('click', function() {
-                        // Trigger a click elsewhere to trigger Popper's own clickoutside logic
-                        $(document).trigger('click');
-                        $('.popper-backdrop').remove();
-                    });
-                }
-            } else {
-                $('.popper-backdrop').remove();
-            }
-        }
-    });
-
-    popperObserver.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
 });
