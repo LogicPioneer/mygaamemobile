@@ -1,0 +1,482 @@
+/* Evolve Idle Premium Mobile-Responsive Stylesheet */
+
+/* ==========================================================================
+   Mobile Responsive Core Layout (Screen widths <= 768px)
+   ========================================================================== */
+@media only screen and (max-width: 768px) {
+    /* Accommodate the bottom navigation bar */
+    body {
+        padding-bottom: 4rem !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Main Container Restructuring */
+    .main {
+        margin: 0.25rem 0.25rem 1.25rem !important;
+        overflow-x: hidden !important;
+        overflow-y: hidden !important;
+    }
+
+    /* Hide standard desktop columns layout */
+    .main > .columns {
+        display: block !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .main > .columns > .column {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* ----------------------------------------------------------------------
+       Visibility Toggling based on Active Navigation Tab State
+       ---------------------------------------------------------------------- */
+    body.mobile-tab-game #mainColumn {
+        display: block !important;
+    }
+    body.mobile-tab-game .leftColumn #resources,
+    body.mobile-tab-game .leftColumn #sideQueue {
+        display: none !important;
+    }
+
+    body.mobile-tab-resources .leftColumn #resources {
+        display: block !important;
+    }
+    body.mobile-tab-resources #mainColumn,
+    body.mobile-tab-resources .leftColumn #sideQueue {
+        display: none !important;
+    }
+
+    body.mobile-tab-logs .leftColumn #sideQueue {
+        display: block !important;
+    }
+    body.mobile-tab-logs #mainColumn,
+    body.mobile-tab-logs .leftColumn #resources {
+        display: none !important;
+    }
+
+    /* ----------------------------------------------------------------------
+       Left Column Restructuring on Mobile
+       ---------------------------------------------------------------------- */
+    .leftColumn {
+        height: auto !important;
+        display: block !important;
+    }
+
+    /* Morale, Power, HUD at top of Resources */
+    body.mobile-tab-resources #race {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0.75rem !important;
+        margin-top: 0 !important;
+        margin-bottom: 0.5rem !important;
+        border-radius: 8px !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    }
+    body.mobile-tab-game #race,
+    body.mobile-tab-logs #race {
+        display: none !important;
+    }
+
+    /* Resources List Section styling */
+    #resources {
+        height: calc(100vh - 8rem) !important;
+        overflow-y: auto !important;
+        padding: 0.5rem !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* SideQueue (Build Queue + Msg Log) styling */
+    #sideQueue {
+        display: flex !important;
+        flex-direction: column !important;
+        height: calc(100vh - 8.5rem) !important;
+        gap: 0.5rem !important;
+    }
+
+    /* Build Queue - top 35% */
+    #buildQueue {
+        flex: 0 0 35% !important;
+        height: auto !important;
+        overflow-y: auto !important;
+        padding: 0.75rem !important;
+        border-radius: 8px !important;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.1) !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Message Log - bottom 65% */
+    #msgQueue {
+        flex: 1 1 65% !important;
+        height: auto !important;
+        overflow-y: auto !important;
+        padding: 0.75rem !important;
+        border-radius: 8px !important;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.1) !important;
+    }
+
+    /* ----------------------------------------------------------------------
+       Top Bar (HUD) Scaling
+       ---------------------------------------------------------------------- */
+    .topBar {
+        font-size: 0.8rem !important;
+        padding: 0.25rem 0.5rem !important;
+        height: auto !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    .topBar .planetWrap {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+    .topBar .planetWrap .universe {
+        margin-left: 0 !important;
+        font-size: 0.65rem !important;
+        opacity: 0.8;
+    }
+
+    .topBar .calendar {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.35rem !important;
+    }
+
+    .topBar .calendar .year,
+    .topBar .calendar .day,
+    .topBar .calendar .season {
+        margin-left: 0.2rem !important;
+    }
+
+    .topBar .version {
+        display: none !important; /* Hide version log to save width */
+    }
+
+    /* ----------------------------------------------------------------------
+       Horizontal Swipeable Tabs
+       ---------------------------------------------------------------------- */
+    .tabs ul {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: nowrap !important;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.25rem !important;
+    }
+
+    .tabs li {
+        flex-shrink: 0 !important;
+    }
+
+    .tabs a {
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* ----------------------------------------------------------------------
+       CSS Grid Auto-Fitting for Action/Building Buttons
+       ---------------------------------------------------------------------- */
+    .actionWidth, 
+    #city .tile.is-parent,
+    #civic .tile.is-parent,
+    .actionsGrid,
+    .govTabs .tile.is-parent {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    /* Style the game building/job cards to flow in grid auto-fit */
+    #city .is-parent, 
+    #civics, 
+    #r_civics,
+    #civic .tile.is-parent {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+        padding: 0.25rem !important;
+    }
+
+    /* Fix individual button wrapper sizes */
+    .action, .btn, .basic-button, .job, .civic {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 2.25rem !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Trade and Market Items Grid styling */
+    #market, #resStorage, #resEjector, #resCargo, #resAlchemy {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+        gap: 0.5rem !important;
+        padding: 0.5rem !important;
+    }
+
+    .market-item {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* ----------------------------------------------------------------------
+       Overlay Bottom-Sheets for Poppers (Morale, Power info, etc.)
+       ---------------------------------------------------------------------- */
+    .popper {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 16px 16px 0 0 !important;
+        padding: 1.25rem !important;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.4) !important;
+        transform: none !important;
+        pointer-events: auto !important;
+        z-index: 10000 !important;
+        animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        border: none !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+    }
+
+    /* Back-overlay mask for bottom sheets */
+    .popper-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        backdrop-filter: blur(2px);
+    }
+
+    /* ----------------------------------------------------------------------
+       Buefy Modals & Alerts scaling
+       ---------------------------------------------------------------------- */
+    .modal .modal-content {
+        min-width: 95% !important;
+        width: 95% !important;
+        margin: 0 auto !important;
+        border-radius: 8px !important;
+    }
+
+    /* Touch buttons helper */
+    .touchButton {
+        display: inline-block !important;
+        min-height: 1.75rem !important;
+        height: 1.75rem !important;
+        line-height: 1.75rem !important;
+        padding: 0 0.75rem !important;
+        margin-top: 0.25rem !important;
+    }
+}
+
+/* ==========================================================================
+   Premium Bottom Navigation Bar Styling (Glassmorphism & Theme Adapters)
+   ========================================================================== */
+.mobile-nav-bar {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .mobile-nav-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3.75rem;
+        z-index: 9998;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.25);
+        padding-bottom: env(safe-area-inset-bottom);
+        backdrop-filter: blur(12px) saturate(180%);
+        -webkit-backdrop-filter: blur(12px) saturate(180%);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        height: 100%;
+        cursor: pointer;
+        transition: transform 0.15s ease, color 0.2s;
+        position: relative;
+    }
+
+    .mobile-nav-item:active {
+        transform: scale(0.92);
+    }
+
+    .mobile-nav-icon {
+        width: 1.4rem;
+        height: 1.4rem;
+        margin-bottom: 0.15rem;
+        transition: fill 0.2s, filter 0.2s;
+    }
+
+    .mobile-nav-label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+    }
+
+    /* Glow Indicator below active icon */
+    .mobile-nav-item.active::after {
+        content: "";
+        position: absolute;
+        bottom: 0.25rem;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: currentColor;
+        box-shadow: 0 0 8px currentColor;
+    }
+
+    /* ======================================================================
+       Dynamic Theme Adopters (Leveraging Evolve's HTML classes)
+       ====================================================================== */
+    
+    /* 1. Dark Theme */
+    html.dark .mobile-nav-bar {
+        background-color: rgba(40, 47, 47, 0.85);
+        border-top-color: rgba(255,255,255,0.06);
+    }
+    html.dark .mobile-nav-item { color: #8a9696; }
+    html.dark .mobile-nav-icon { fill: #8a9696; }
+    html.dark .mobile-nav-item.active {
+        color: #1abc9c;
+        filter: drop-shadow(0 0 3px rgba(26, 188, 156, 0.4));
+    }
+    html.dark .mobile-nav-item.active .mobile-nav-icon { fill: #1abc9c; }
+
+    /* 2. Light Theme */
+    html.light .mobile-nav-bar {
+        background-color: rgba(245, 245, 245, 0.9);
+        border-top-color: rgba(0, 0, 0, 0.06);
+    }
+    html.light .mobile-nav-item { color: #666; }
+    html.light .mobile-nav-icon { fill: #666; }
+    html.light .mobile-nav-item.active {
+        color: #3273dc;
+        filter: drop-shadow(0 0 2px rgba(50, 115, 220, 0.3));
+    }
+    html.light .mobile-nav-item.active .mobile-nav-icon { fill: #3273dc; }
+
+    /* 3. Night Theme */
+    html.night .mobile-nav-bar {
+        background-color: rgba(15, 17, 21, 0.88);
+        border-top-color: rgba(255,255,255,0.05);
+    }
+    html.night .mobile-nav-item { color: #7a8292; }
+    html.night .mobile-nav-icon { fill: #7a8292; }
+    html.night .mobile-nav-item.active {
+        color: #e06c75;
+        filter: drop-shadow(0 0 3px rgba(224, 108, 117, 0.4));
+    }
+    html.night .mobile-nav-item.active .mobile-nav-icon { fill: #e06c75; }
+
+    /* 4. Dark Night Theme */
+    html.darkNight .mobile-nav-bar {
+        background-color: rgba(9, 9, 11, 0.9);
+        border-top-color: rgba(255,255,255,0.05);
+    }
+    html.darkNight .mobile-nav-item { color: #71717a; }
+    html.darkNight .mobile-nav-icon { fill: #71717a; }
+    html.darkNight .mobile-nav-item.active {
+        color: #c084fc;
+        filter: drop-shadow(0 0 4px rgba(192, 132, 252, 0.5));
+    }
+    html.darkNight .mobile-nav-item.active .mobile-nav-icon { fill: #c084fc; }
+
+    /* 5. Dracula Theme */
+    html.dracula .mobile-nav-bar {
+        background-color: rgba(40, 42, 54, 0.88);
+        border-top-color: rgba(255,255,255,0.05);
+    }
+    html.dracula .mobile-nav-item { color: #6272a4; }
+    html.dracula .mobile-nav-icon { fill: #6272a4; }
+    html.dracula .mobile-nav-item.active {
+        color: #ff79c6;
+        filter: drop-shadow(0 0 4px rgba(255, 121, 198, 0.5));
+    }
+    html.dracula .mobile-nav-item.active .mobile-nav-icon { fill: #ff79c6; }
+
+    /* 6. Gruvbox Dark Theme */
+    html.gruvboxDark .mobile-nav-bar,
+    html.gruvboxDarkRG .mobile-nav-bar {
+        background-color: rgba(40, 40, 40, 0.9);
+        border-top-color: rgba(255,255,255,0.05);
+    }
+    html.gruvboxDark .mobile-nav-item,
+    html.gruvboxDarkRG .mobile-nav-item { color: #928374; }
+    html.gruvboxDark .mobile-nav-icon,
+    html.gruvboxDarkRG .mobile-nav-icon { fill: #928374; }
+    html.gruvboxDark .mobile-nav-item.active,
+    html.gruvboxDarkRG .mobile-nav-item.active {
+        color: #fe8019;
+        filter: drop-shadow(0 0 3px rgba(254, 128, 25, 0.4));
+    }
+    html.gruvboxDark .mobile-nav-item.active .mobile-nav-icon,
+    html.gruvboxDarkRG .mobile-nav-item.active .mobile-nav-icon { fill: #fe8019; }
+
+    /* 7. Gruvbox Light Theme */
+    html.gruvboxLight .mobile-nav-bar {
+        background-color: rgba(251, 241, 199, 0.92);
+        border-top-color: rgba(0, 0, 0, 0.08);
+    }
+    html.gruvboxLight .mobile-nav-item { color: #7c6f64; }
+    html.gruvboxLight .mobile-nav-icon { fill: #7c6f64; }
+    html.gruvboxLight .mobile-nav-item.active {
+        color: #af3a03;
+        filter: drop-shadow(0 0 2px rgba(175, 58, 3, 0.3));
+    }
+    html.gruvboxLight .mobile-nav-item.active .mobile-nav-icon { fill: #af3a03; }
+
+    /* 8. Orange Soda Theme */
+    html.orangeSoda .mobile-nav-bar {
+        background-color: rgba(43, 29, 29, 0.88);
+        border-top-color: rgba(255,255,255,0.05);
+    }
+    html.orangeSoda .mobile-nav-item { color: #856161; }
+    html.orangeSoda .mobile-nav-icon { fill: #856161; }
+    html.orangeSoda .mobile-nav-item.active {
+        color: #ff6b6b;
+        filter: drop-shadow(0 0 3px rgba(255, 107, 107, 0.4));
+    }
+    html.orangeSoda .mobile-nav-item.active .mobile-nav-icon { fill: #ff6b6b; }
+
+    /* 9. Red-Green Theme */
+    html.redgreen .mobile-nav-bar {
+        background-color: rgba(26, 26, 26, 0.9);
+        border-top-color: rgba(255,255,255,0.05);
+    }
+    html.redgreen .mobile-nav-item { color: #808080; }
+    html.redgreen .mobile-nav-icon { fill: #808080; }
+    html.redgreen .mobile-nav-item.active {
+        color: #4ba3e3;
+        filter: drop-shadow(0 0 3px rgba(75, 163, 227, 0.4));
+    }
+    html.redgreen .mobile-nav-item.active .mobile-nav-icon { fill: #4ba3e3; }
+}
